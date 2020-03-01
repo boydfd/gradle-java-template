@@ -7,7 +7,7 @@ pipeline {
 			steps {
 				checkout scm
 				container ('gradle') {
-					sh './gradlew checkstyleMain'
+					sh './gradlew clean checkstyleMain'
 					sh './gradlew checkstyleTest'
 					sh './gradlew pmdMain'
 					sh './gradlew pmdTest'
