@@ -20,10 +20,8 @@ sourceCompatibility = 1.8
 
 allprojects {
     repositories {
-        google()
-        jcenter()
         // maven库
-        def local = "http://nexus.aboydfd.com"
+        def local = "http://nexus.aboydfd.com/repository/maven-public/"
         def cn = "http://maven.aliyun.com/nexus/content/groups/public/"
         def abroad = "http://central.maven.org/maven2/"
         // 先从url中下载jar若没有找到，则在artifactUrls中寻找
