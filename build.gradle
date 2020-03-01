@@ -28,7 +28,6 @@ allprojects {
         def abroad = "http://central.maven.org/maven2/"
         // 先从url中下载jar若没有找到，则在artifactUrls中寻找
         maven {
-            allowInsecureProtocol true
             url local
             artifactUrls cn, abroad
         }
