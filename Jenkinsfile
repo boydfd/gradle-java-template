@@ -19,10 +19,16 @@ pipeline {
 				always {
 					junit 'build/test-results/**/*.xml'
 					step( [ $class: 'JacocoPublisher' ] )
+					sh '''
+						cp build/libs/*.jar docker/app.jar
+						rm -rf docker/deps
+						mkdir -p docker/deps
+						$(cd docker/deps; jar -xf ../app.jar)
+					'''
 				}
 				success {
-					archiveArtifacts artifacts: 'build/libs/*.jar', fingerprint: true
 					archiveArtifacts artifacts: 'docker/*', fingerprint: true
+					archiveArtifacts artifacts: 'docker/deps/**/*', fingerprint: true
 				}
 			}
 		}
@@ -32,7 +38,7 @@ pipeline {
             steps {
 				container ('docker') {
 					step([$class              : 'CopyArtifact',
-						  filter              : 'build/libs/*.jar',
+						  filter              : 'docker/deps/**/*',
 						  fingerprintArtifacts: true,
 						  projectName         : '${JOB_NAME}',
 						  selector            : [$class: 'SpecificBuildSelector', buildNumber: '${BUILD_NUMBER}']
@@ -43,7 +49,6 @@ pipeline {
 						  projectName         : '${JOB_NAME}',
 						  selector            : [$class: 'SpecificBuildSelector', buildNumber: '${BUILD_NUMBER}']
 					])
-					sh 'cp build/libs/*.jar docker/app.jar'
 					sh 'docker/build.sh'
 				}
             }

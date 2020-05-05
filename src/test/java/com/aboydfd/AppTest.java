@@ -1,6 +1,7 @@
 package com.aboydfd;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -8,13 +9,10 @@ import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@SpringBootTest
 class AppTest {
-    @Test void appHasAGreeting() throws IOException {
-        ByteArrayOutputStream bo = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(bo));
-        App.main(null);
-        bo.flush();
-        String allWrittenLines = new String(bo.toByteArray());
-        assertNotEquals("", allWrittenLines);
+    @Test
+    void loadContext() {
+        App.main(new String[]{});
     }
 }

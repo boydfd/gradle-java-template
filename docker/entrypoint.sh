@@ -1,2 +1,2 @@
 #!/bin/sh
-java -jar -Dspring.profiles.active=$springProfiles /app.jar
+java -cp app:app/lib/* -Dspring.profiles.active=${springProfiles} "com.aboydfd.App"
