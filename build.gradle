@@ -7,8 +7,8 @@
  */
 
 plugins {
-    id 'org.springframework.boot' version '2.2.6.RELEASE'
-    id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+    id 'org.springframework.boot' version '2.6.3'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     // Apply the java plugin to add support for Java
     id 'java'
 
@@ -23,14 +23,14 @@ sourceCompatibility = 1.8
 allprojects {
     repositories {
         // maven库
-        def local = "http://nexus.aboydfd.com/repository/maven-public/"
-        def cn = "http://maven.aliyun.com/nexus/content/groups/public/"
+        mavenLocal()
+        def cn = "https://maven.aliyun.com/repository/central"
         def abroad = "https://repo1.maven.org/maven2/"
         def spring = 'https://repo.spring.io/milestone'
 //         先从url中下载jar若没有找到，则在artifactUrls中寻找
         maven {
-            url local
-            artifactUrls cn, abroad, spring
+            url cn
+            artifactUrls abroad, spring
         }
     }
 }

@@ -9,8 +9,9 @@
 
 pluginManagement {
     repositories {
+        mavenLocal()
         maven {
-            url "http://nexus.aboydfd.com/repository/maven-public/"
+            url "https://maven.aliyun.com/repository/central"
         }
         maven { url 'https://repo.spring.io/milestone' }
         gradlePluginPortal()
@@ -26,4 +27,4 @@ pluginManagement {
     }
 }
 
-rootProject.name = 'boydfd'
+rootProject.name = 'mdm'
